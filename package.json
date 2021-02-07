@@ -1,0 +1,18 @@
+{
+  "name": "query-idol-by-birth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "socks-proxy-agent": "^5.0.0",
+    "tunnel": "0.0.6"
+  }
+}
