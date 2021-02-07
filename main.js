@@ -7,9 +7,9 @@ axios.defaults.proxy = false;
 axios.defaults.httpsAgent = tunnel.httpsOverHttp({proxy: {host: '127.0.0.1', port: 1080}}); //设置代理
 
 let wikiUrl = 'https://ja.wikipedia.org';
-let idolNameArr = [];
-let page = 1;
-let idolSum = 0;
+let idolNameArr = [];   //存放漂亮姐姐的数组
+let page = 1;   //页面序号
+let idolSum = 0;    //漂亮姐姐统计
 
 async function start(url, year) {
     //GET漂亮姐姐列表页
@@ -38,9 +38,9 @@ async function start(url, year) {
                             page++;
                             idolSum += counter;
                             console.log(`共爬取 ${idolSum} 位漂亮姐姐，符合条件的有 ${idolNameArr.length} 位`)
-                            if (nextPage !== undefined) {
+                            if (nextPage !== undefined) {   //如果有下一页，继续爬取下一页
                                 start(wikiUrl + nextPage, year);
-                            } else {
+                            } else {    //没有下一页了的话，将数据写入文件
                                 let file = fs.createWriteStream('array.txt');
                                 file.on('error', function (err) {
                                     console.log(err)
@@ -56,5 +56,5 @@ async function start(url, year) {
         });
 }
 
-//输入
+//year为漂亮姐姐诞生日，将筛选大于诞生日的漂亮姐姐
 start(wikiUrl + '/wiki/Category:%E6%97%A5%E6%9C%AC%E3%81%AEAV%E5%A5%B3%E5%84%AA', 1995).then();
